@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddmodmxojemun"]
+
+[ext_resource type="Script" path="res://Label3D.gd" id="1_c6tcn"]
+[ext_resource type="Shader" path="res://node_3d.gdshader" id="2_r74eq"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_b38mj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2hpg5"]
+render_priority = 0
+shader = ExtResource("2_r74eq")
+shader_parameter/size = Vector2(512, 256)
+
+[sub_resource type="Gradient" id="Gradient_dx55c"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qt2m0"]
+gradient = SubResource("Gradient_dx55c")
+width = 512
+height = 256
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.01073, 0, 0)
+mesh = SubResource("CapsuleMesh_b38mj")
+
+[node name="Label3D" type="Label3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.97587, 1.73346, -0.0645094)
+billboard = 1
+text = "111111111111111111"
+autowrap_mode = 3
+script = ExtResource("1_c6tcn")
+
+[node name="Sprite3D" type="Sprite3D" parent="MeshInstance3D/Label3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
+material_override = SubResource("ShaderMaterial_2hpg5")
+gi_mode = 0
+billboard = 1
+texture = SubResource("GradientTexture2D_qt2m0")
+region_rect = Rect2(-142.5, -57.75, 611, 418)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.65005)
