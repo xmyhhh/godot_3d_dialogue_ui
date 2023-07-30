@@ -1,6 +1,8 @@
 shader_type spatial;
 render_mode unshaded, diffuse_toon, ambient_light_disabled;
 uniform vec2 size = vec2(512.0, 256.0);
+uniform float origin_offset = 0.0;
+
 vec4 draw_circle(vec4 in_color, vec2 in_pos, vec4 draw_color, vec2 pos, float r){
 	vec4 out_color = in_color;
 	
@@ -51,30 +53,31 @@ vec4 draw_triangle(vec4 in_color, vec2 in_pos, vec4 draw_color, vec2 pos, float 
 	return out_color;
 }
 
-//void vertex(){
-//	mat4 INV_CAMERA_MATRIX = INV_VIEW_MATRIX;
-//	mat4 CAMERA_MATRIX = VIEW_MATRIX;
-//	mat4 WORLD_MATRIX = MODEL_MATRIX;
-//
-//	mat4 modelView = MODELVIEW_MATRIX;
-//	// First colunm.
-//	modelView[0][0] = 1.0; 
-//	modelView[0][1] = 0.0; 
-//	modelView[0][2] = 0.0; 
-//
-//	// Second colunm.
-//	modelView[1][0] = 0.0; 
-//	modelView[1][1] = 1.0; 
-//	modelView[1][2] = 0.0; 
-//
-//	// Thrid colunm.
-//	modelView[2][0] = 0.0; 
-//	modelView[2][1] = 0.0; 
-//	modelView[2][2] = 1.0; 
-//
-//	modelView[3][2] -= 0.01;
-//	MODELVIEW_MATRIX = modelView;
-//}
+void vertex(){
+	mat4 INV_CAMERA_MATRIX = INV_VIEW_MATRIX;
+	mat4 CAMERA_MATRIX = VIEW_MATRIX;
+	mat4 WORLD_MATRIX = MODEL_MATRIX;
+
+	mat4 modelView = MODELVIEW_MATRIX;
+	// First colunm.
+	modelView[0][0] = 1.0; 
+	modelView[0][1] = 0.0; 
+	modelView[0][2] = 0.0; 
+
+	// Second colunm.
+	modelView[1][0] = 0.0; 
+	modelView[1][1] = 1.0; 
+	modelView[1][2] = 0.0; 
+
+	// Thrid colunm.
+	modelView[2][0] = 0.0; 
+	modelView[2][1] = 0.0; 
+	modelView[2][2] = 1.0; 
+
+	modelView[3][3] = origin_offset;
+	
+	MODELVIEW_MATRIX = modelView;
+}
 
 void fragment() {
 	// Place fragment code here.

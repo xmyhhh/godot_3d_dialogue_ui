@@ -24,7 +24,7 @@ var initial_rotation := rotation.y
 
 func _input(event: InputEvent) -> void:
 	# Mouse look (effective only if the mouse is captured)
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+	if event is InputEventMouseMotion :
 		# Horizontal mouse look
 		rotation.y -= event.relative.x * MOUSE_SENSITIVITY
 		# Vertical mouse look, clamped to -90..90 degrees
