@@ -1,13 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddmodmxojemun"]
+[gd_scene load_steps=14 format=3 uid="uid://ddmodmxojemun"]
 
 [ext_resource type="Script" path="res://Label3D.gd" id="1_c6tcn"]
-[ext_resource type="Shader" path="res://node_3d.gdshader" id="2_r74eq"]
+[ext_resource type="Shader" path="res://dialogue_center.gdshader" id="2_l2wnf"]
+[ext_resource type="Shader" path="res://dialogue_top.gdshader" id="3_e2186"]
+[ext_resource type="Shader" path="res://dialogue_buttom.gdshader" id="4_g6hhg"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="5_usqwl"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_do24p"]
+size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h32qr"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b38mj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2hpg5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6q5c"]
 render_priority = 0
-shader = ExtResource("2_r74eq")
+shader = ExtResource("2_l2wnf")
 shader_parameter/size = Vector2(512, 256)
 
 [sub_resource type="Gradient" id="Gradient_dx55c"]
@@ -17,26 +25,60 @@ gradient = SubResource("Gradient_dx55c")
 width = 512
 height = 256
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pwwmq"]
+render_priority = 1
+shader = ExtResource("3_e2186")
+shader_parameter/size = Vector2(512, 256)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfcr1"]
+render_priority = 1
+shader = ExtResource("4_g6hhg")
+shader_parameter/size = Vector2(512, 256)
+
 [node name="Node3D" type="Node3D"]
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_do24p")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.01073, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0107298, 0, 0)
+material_override = SubResource("StandardMaterial3D_h32qr")
 mesh = SubResource("CapsuleMesh_b38mj")
 
 [node name="Label3D" type="Label3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.97587, 1.73346, -0.0645094)
-billboard = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0105672, 1.96812, -0.0645094)
+render_priority = 1
+modulate = Color(0.231373, 0, 1, 1)
 text = "111111111111111111"
 autowrap_mode = 3
 script = ExtResource("1_c6tcn")
 
-[node name="Sprite3D" type="Sprite3D" parent="MeshInstance3D/Label3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
-material_override = SubResource("ShaderMaterial_2hpg5")
+[node name="center" type="Sprite3D" parent="MeshInstance3D/Label3D"]
+material_override = SubResource("ShaderMaterial_i6q5c")
+gi_mode = 0
+billboard = 1
+texture = SubResource("GradientTexture2D_qt2m0")
+region_rect = Rect2(-142.5, -57.75, 611, 418)
+
+[node name="top" type="Sprite3D" parent="MeshInstance3D/Label3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.436427, 0)
+material_override = SubResource("ShaderMaterial_pwwmq")
+gi_mode = 0
+billboard = 1
+texture = SubResource("GradientTexture2D_qt2m0")
+region_rect = Rect2(-142.5, -57.75, 611, 418)
+
+[node name="buttom" type="Sprite3D" parent="MeshInstance3D/Label3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88457, -0.456265, 0)
+material_override = SubResource("ShaderMaterial_vfcr1")
 gi_mode = 0
 billboard = 1
 texture = SubResource("GradientTexture2D_qt2m0")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.65005)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+script = ExtResource("5_usqwl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.183013, 0.965926, -0.183013, -0.683013, 0.258819, 0.683013, 0.707107, -1.84392e-08, 0.707107, -0.915064, 7.41506, 3.53553)
