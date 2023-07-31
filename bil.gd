@@ -1,5 +1,5 @@
 @tool
-extends Label3D
+extends Node3D
 
 
 func _process(delta):
@@ -9,7 +9,10 @@ func _process(delta):
 	var all_child = get_children()
 
 	for child in all_child:
-		child.material_override.set_shader_parameter("origin_offset", child.global_transform.origin - global_transform.origin)
+		child.get_children()[0].material_override.set_shader_parameter("origin_offset", child.transform.origin + Vector3(0, 0.5, 0))
+		print(1)
+		
+		
 #		print(child.transform.origin)
 #	look_at(dir, cur_cam.global_transform.basis.y, true)
 #

@@ -1,10 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddmodmxojemun"]
+[gd_scene load_steps=14 format=3 uid="uid://ddmodmxojemun"]
 
-[ext_resource type="Script" path="res://Label3D.gd" id="1_c6tcn"]
+[ext_resource type="Script" path="res://bil.gd" id="1_mwlmx"]
 [ext_resource type="Shader" path="res://dialogue_center.gdshader" id="2_l2wnf"]
 [ext_resource type="Shader" path="res://dialogue_top.gdshader" id="3_e2186"]
 [ext_resource type="Shader" path="res://dialogue_buttom.gdshader" id="4_g6hhg"]
-[ext_resource type="Script" path="res://Camera3D.gd" id="5_usqwl"]
+[ext_resource type="Script" path="res://cam.gd" id="5_xjia1"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_do24p"]
 size = Vector2(20, 20)
@@ -13,11 +13,11 @@ size = Vector2(20, 20)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b38mj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6q5c"]
-render_priority = 0
-shader = ExtResource("2_l2wnf")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pwwmq"]
+render_priority = 1
+shader = ExtResource("3_e2186")
 shader_parameter/size = Vector2(512, 256)
-shader_parameter/origin_offset = Vector3(0, 0, 0)
+shader_parameter/origin_offset = Vector3(-1.81689, 0.972888, 0)
 
 [sub_resource type="Gradient" id="Gradient_dx55c"]
 
@@ -26,62 +26,56 @@ gradient = SubResource("Gradient_dx55c")
 width = 512
 height = 256
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pwwmq"]
-render_priority = 1
-shader = ExtResource("3_e2186")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6q5c"]
+render_priority = 0
+shader = ExtResource("2_l2wnf")
 shader_parameter/size = Vector2(512, 256)
-shader_parameter/origin_offset = Vector3(-2, 0.436427, 0)
-
-[sub_resource type="BoxMesh" id="BoxMesh_jnuiu"]
-size = Vector3(0.2, 0.2, 0.2)
+shader_parameter/origin_offset = Vector3(0, 0.5, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vfcr1"]
 render_priority = 1
 shader = ExtResource("4_g6hhg")
 shader_parameter/size = Vector2(512, 256)
-shader_parameter/origin_offset = Vector3(1.88457, -0.456265, 0)
+shader_parameter/origin_offset = Vector3(1.89985, 0.0520006, 0)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="ground" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("PlaneMesh_do24p")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="player" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0107298, 0, 0)
 material_override = SubResource("StandardMaterial3D_h32qr")
 mesh = SubResource("CapsuleMesh_b38mj")
 
-[node name="Label3D" type="Label3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0105672, 1.96812, -0.0645094)
-billboard = 1
-render_priority = 2
-modulate = Color(0.231373, 0, 1, 1)
-text = "111111111111111111"
-autowrap_mode = 3
-script = ExtResource("1_c6tcn")
+[node name="dialog box" type="Node3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.94133, 0)
+script = ExtResource("1_mwlmx")
 
-[node name="center" type="Sprite3D" parent="MeshInstance3D/Label3D"]
-material_override = SubResource("ShaderMaterial_i6q5c")
-gi_mode = 0
-billboard = 1
-texture = SubResource("GradientTexture2D_qt2m0")
-region_rect = Rect2(-142.5, -57.75, 611, 418)
+[node name="top" type="Label3D" parent="player/dialog box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81689, 0.472888, 0)
 
-[node name="top" type="Sprite3D" parent="MeshInstance3D/Label3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.436427, 0)
+[node name="top_bg" type="Sprite3D" parent="player/dialog box/top"]
 material_override = SubResource("ShaderMaterial_pwwmq")
 gi_mode = 0
 billboard = 1
 texture = SubResource("GradientTexture2D_qt2m0")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D/Label3D/top"]
-mesh = SubResource("BoxMesh_jnuiu")
+[node name="center" type="Label3D" parent="player/dialog box"]
 
-[node name="buttom" type="Sprite3D" parent="MeshInstance3D/Label3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88457, -0.456265, 0)
-visible = false
+[node name="center_bg" type="Sprite3D" parent="player/dialog box/center"]
+material_override = SubResource("ShaderMaterial_i6q5c")
+gi_mode = 0
+billboard = 1
+texture = SubResource("GradientTexture2D_qt2m0")
+region_rect = Rect2(-142.5, -57.75, 611, 418)
+
+[node name="buttom" type="Label3D" parent="player/dialog box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89985, -0.447999, 0)
+
+[node name="buttom_bg" type="Sprite3D" parent="player/dialog box/buttom"]
 material_override = SubResource("ShaderMaterial_vfcr1")
 gi_mode = 0
 billboard = 1
@@ -90,7 +84,7 @@ region_rect = Rect2(-142.5, -57.75, 611, 418)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
-script = ExtResource("5_usqwl")
+script = ExtResource("5_xjia1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.183013, 0.965926, -0.183013, -0.683013, 0.258819, 0.683013, 0.707107, -1.84392e-08, 0.707107, -0.915064, 7.41506, 3.53553)
