@@ -1,6 +1,6 @@
 shader_type spatial;
 render_mode unshaded, diffuse_toon, ambient_light_disabled, skip_vertex_transform;
-uniform vec2 size = vec2(512.0, 256.0);
+uniform vec2 size = vec2(64.0, 64.0);
 uniform vec3 origin_offset = vec3(0.0);
 
 vec4 draw_circle(vec4 in_color, vec2 in_pos, vec4 draw_color, vec2 pos, float r){
@@ -16,8 +16,8 @@ vec4 draw_rounded_rectangle(vec4 in_color,vec2 in_pos, vec4 draw_color, vec2 pos
 	vec4 out_color = in_color;
 	vec2 in_pos_to_center = in_pos - pos;
 	
-	if( 2. * r > width || 2. * r > height)
-		return out_color;
+//	if( 2. * r > width || 2. * r > height)
+//		return out_color;
 
 	if( abs(in_pos_to_center.x) > width/2.0 || abs(in_pos_to_center.y) > height/2.0)
 		return out_color;
@@ -88,20 +88,17 @@ void fragment() {
 	pixel_pos.y = -pixel_pos.y;
 	vec4 color = vec4(0.);
 	
-	vec2 rounded_rectangle_size = vec2(size.x * 0.8, size.y * 0.4);
+	vec2 triangle_size =  vec2(12.0, 14.0) ;
+	
+	vec2 rounded_rectangle_size = size - triangle_size * 2.;
 	vec2 rounded_rectangle_pos = vec2(0., 0.);
 	vec4 rounded_rectangle_color = vec4(1.,1.,1.,0.8);
-	float rounded_rectangle_r = 35.;
+	float rounded_rectangle_r = min(min(size.x, size.y) * 0.12, 32.0);
 	
 	vec2 triangle_pos = rounded_rectangle_pos - vec2(0.0, rounded_rectangle_size.y / 2.0);
 	vec4 triangle_color = vec4(1.,1.,1.,0.8);
-	vec2 triangle_size = vec2(20., 25.);
 
-	vec2 rounded_rectangle_left_size = vec2(120.0, 40.0);
-	vec2 rounded_rectangle_left_pos =rounded_rectangle_pos - vec2(160., -50.);
-	vec4 rounded_rectangle_left_color = vec4(0.8, 0.5, 1., 0.8);
-	float rounded_rectangle_left_r = 16.;
-	
+
 	color = draw_rounded_rectangle(color, pixel_pos, rounded_rectangle_color,rounded_rectangle_pos, rounded_rectangle_size.x, rounded_rectangle_size.y, rounded_rectangle_r);
 	color = draw_triangle(color, pixel_pos, triangle_color, triangle_pos, triangle_size.x, triangle_size.y);
 //	color = draw_rounded_rectangle(color, pixel_pos, rounded_rectangle_left_color, rounded_rectangle_left_pos, rounded_rectangle_left_size.x, rounded_rectangle_left_size.y, rounded_rectangle_left_r);

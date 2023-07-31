@@ -1,6 +1,6 @@
 shader_type spatial;
 render_mode unshaded, diffuse_toon, ambient_light_disabled, skip_vertex_transform;
-uniform vec2 size = vec2(512.0, 256.0);
+uniform vec2 size = vec2(64.0, 64.0);
 uniform vec3 origin_offset = vec3(0.0);
 
 vec4 draw_circle(vec4 in_color, vec2 in_pos, vec4 draw_color, vec2 pos, float r){
@@ -76,8 +76,8 @@ void vertex(){
 	
     VERTEX =  (modelView * vec4(VERTEX, 1.0)).xyz ;
 	
-	vec4 offset_dir = VIEW_MATRIX  * MODEL_MATRIX * vec4(origin_offset, 1.0) - VIEW_MATRIX  * MODEL_MATRIX * vec4(0.,0.,0., 1.0);
-	float offset_dir_z_dis = dot(vec3(0, 0, -1), offset_dir.xyz);
+	vec4 offset_dir = VIEW_MATRIX * MODEL_MATRIX * vec4(origin_offset, 1.0) - VIEW_MATRIX * MODEL_MATRIX * vec4(0.,0.,0., 1.0);
+//	float offset_dir_z_dis = dot(vec3(0, 0, -1), offset_dir.xyz);
 	VERTEX = VERTEX - offset_dir.xyz + vec3(origin_offset.x, origin_offset.y, 0.);
 }
 void fragment() {
@@ -88,14 +88,14 @@ void fragment() {
 	vec4 color = vec4(0.);
 
 	vec2 circle_pos   = vec2(0., 0.);
-	vec4 circle_color = vec4(0.8, 0.5, 1., 0.8);
+	vec4 circle_color = vec4(0.0, 0.5, 1., 0.8);
 	float circle_r    = 28.;
 	
 //	color = draw_rounded_rectandgle(color, pixel_pos, rounded_rectangle_color,rounded_rectangle_pos, rounded_rectangle_size.x, rounded_rectangle_size.y, rounded_rectangle_r);
 //	color = draw_triangle(color, pixel_pos, triangle_color, triangle_pos, triangle_size.x, triangle_size.y);
 //	color = draw_rounded_rectangle(color, pixel_pos, rounded_rectangle_left_color, rounded_rectangle_left_pos, rounded_rectangle_left_size.x, rounded_rectangle_left_size.y, rounded_rectangle_left_r);
 	color = draw_circle(color, pixel_pos, circle_color, circle_pos, circle_r);
-	ALBEDO = color.rgb;
+	ALBEDO = color.rgb ;
 	ALPHA = color.a;
 
 }

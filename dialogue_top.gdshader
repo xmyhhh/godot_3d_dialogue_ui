@@ -1,6 +1,6 @@
 shader_type spatial;
 render_mode unshaded, diffuse_toon, ambient_light_disabled, skip_vertex_transform;
-uniform vec2 size = vec2(512.0, 256.0);
+uniform vec2 size = vec2(64.0, 64.0);
 uniform vec3 origin_offset = vec3(0.0);
 
 vec4 draw_circle(vec4 in_color, vec2 in_pos, vec4 draw_color, vec2 pos, float r){

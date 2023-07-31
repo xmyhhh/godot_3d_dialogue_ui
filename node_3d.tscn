@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddmodmxojemun"]
+[gd_scene load_steps=18 format=3 uid="uid://ddmodmxojemun"]
 
-[ext_resource type="Script" path="res://bil.gd" id="1_mwlmx"]
+[ext_resource type="Script" path="res://dialogBox.gd" id="1_xkrsu"]
 [ext_resource type="Script" path="res://smart_label_bg.gd" id="2_gmlet"]
 [ext_resource type="Shader" path="res://dialogue_center.gdshader" id="2_l2wnf"]
 [ext_resource type="Shader" path="res://dialogue_top.gdshader" id="3_e2186"]
@@ -14,30 +14,36 @@ size = Vector2(20, 20)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b38mj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pwwmq"]
-render_priority = 1
-shader = ExtResource("3_e2186")
-shader_parameter/size = Vector2(512, 256)
-shader_parameter/origin_offset = Vector3(-1.81689, 1.27289, 0)
-
-[sub_resource type="Gradient" id="Gradient_dx55c"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qt2m0"]
-gradient = SubResource("Gradient_dx55c")
-width = 512
-height = 256
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i6q5c"]
 render_priority = 0
 shader = ExtResource("2_l2wnf")
-shader_parameter/size = Vector2(512, 256)
-shader_parameter/origin_offset = Vector3(0, 0.8, 0)
+shader_parameter/size = Vector2(64, 64)
+shader_parameter/origin_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_dx55c"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a43ss"]
+gradient = SubResource("Gradient_dx55c")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pwwmq"]
+render_priority = 1
+shader = ExtResource("3_e2186")
+shader_parameter/size = Vector2(64, 64)
+shader_parameter/origin_offset = Vector3(-1.81689, 0.472888, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3vjm5"]
+gradient = SubResource("Gradient_dx55c")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vfcr1"]
 render_priority = 1
 shader = ExtResource("4_g6hhg")
-shader_parameter/size = Vector2(512, 256)
-shader_parameter/origin_offset = Vector3(1.89985, 0.352001, 0)
+shader_parameter/size = Vector2(64, 64)
+shader_parameter/origin_offset = Vector3(1.89985, -0.447999, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_86v7t"]
+gradient = SubResource("Gradient_dx55c")
+
+[sub_resource type="PrismMesh" id="PrismMesh_ydy0a"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -51,38 +57,67 @@ material_override = SubResource("StandardMaterial3D_h32qr")
 mesh = SubResource("CapsuleMesh_b38mj")
 
 [node name="dialog box" type="Node3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.94133, 0)
-script = ExtResource("1_mwlmx")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08397, 0)
+script = ExtResource("1_xkrsu")
 
-[node name="top" type="Label3D" parent="player/dialog box"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81689, 0.472888, 0)
-script = ExtResource("2_gmlet")
-
-[node name="top_bg" type="Sprite3D" parent="player/dialog box/top"]
-material_override = SubResource("ShaderMaterial_pwwmq")
-gi_mode = 0
-billboard = 1
-texture = SubResource("GradientTexture2D_qt2m0")
-region_rect = Rect2(-142.5, -57.75, 611, 418)
-
-[node name="center" type="Label3D" parent="player/dialog box"]
-
-[node name="center_bg" type="Sprite3D" parent="player/dialog box/center"]
+[node name="center_bg" type="Sprite3D" parent="player/dialog box"]
 material_override = SubResource("ShaderMaterial_i6q5c")
 gi_mode = 0
 billboard = 1
-texture = SubResource("GradientTexture2D_qt2m0")
+texture = SubResource("GradientTexture2D_a43ss")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
+script = ExtResource("2_gmlet")
 
-[node name="buttom" type="Label3D" parent="player/dialog box"]
+[node name="center" type="Label3D" parent="player/dialog box/center_bg"]
+billboard = 1
+render_priority = 2
+outline_render_priority = 2
+modulate = Color(0.0470588, 0.0941176, 0.219608, 1)
+text = "dasd, afF s, sdaf ,sa as "
+outline_size = 1
+autowrap_mode = 3
+
+[node name="top_bg" type="Sprite3D" parent="player/dialog box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81689, 0.472888, 0)
+material_override = SubResource("ShaderMaterial_pwwmq")
+gi_mode = 0
+billboard = 1
+texture = SubResource("GradientTexture2D_3vjm5")
+region_rect = Rect2(-142.5, -57.75, 611, 418)
+script = ExtResource("2_gmlet")
+
+[node name="top" type="Label3D" parent="player/dialog box/top_bg"]
+billboard = 1
+render_priority = 2
+outline_render_priority = 2
+modulate = Color(0, 0, 0, 1)
+text = "Mr. Dot"
+outline_size = 1
+
+[node name="buttom_bg" type="Sprite3D" parent="player/dialog box"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89985, -0.447999, 0)
-
-[node name="buttom_bg" type="Sprite3D" parent="player/dialog box/buttom"]
 material_override = SubResource("ShaderMaterial_vfcr1")
 gi_mode = 0
 billboard = 1
-texture = SubResource("GradientTexture2D_qt2m0")
+texture = SubResource("GradientTexture2D_86v7t")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
+script = ExtResource("2_gmlet")
+
+[node name="buttom" type="Label3D" parent="player/dialog box/buttom_bg"]
+billboard = 1
+render_priority = 2
+outline_render_priority = 2
+modulate = Color(0.117647, 0.14902, 0.188235, 1)
+text = "Yesa"
+outline_size = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.0190063, 0.801108, 0.294617)
+mesh = SubResource("PrismMesh_ydy0a")
+
+[node name="SubViewport" type="SubViewport" parent="player"]
+disable_3d = true
+transparent_bg = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
