@@ -90,12 +90,12 @@ void fragment() {
 	
 	vec2 triangle_size =  vec2(12.0, 14.0) ;
 	
-	vec2 rounded_rectangle_size = size - triangle_size * 2.;
+	vec2 rounded_rectangle_size = size - triangle_size * 2.3 + vec2(10.,5.);
 	vec2 rounded_rectangle_pos = vec2(0., 0.);
 	vec4 rounded_rectangle_color = vec4(1.,1.,1.,0.8);
 	float rounded_rectangle_r = min(min(size.x, size.y) * 0.12, 32.0);
 	
-	vec2 triangle_pos = rounded_rectangle_pos - vec2(0.0, rounded_rectangle_size.y / 2.0);
+	vec2 triangle_pos = rounded_rectangle_pos - vec2(0.0, rounded_rectangle_size.y / 2.1) ;
 	vec4 triangle_color = vec4(1.,1.,1.,0.8);
 
 

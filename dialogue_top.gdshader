@@ -88,10 +88,10 @@ void fragment() {
 	pixel_pos.y = -pixel_pos.y;
 	vec4 color = vec4(0.);
 
-	vec2 rounded_rectangle_size = vec2(120.0, 40.0);
+	vec2 rounded_rectangle_size = vec2(size.x - 10., 40.);
 	vec2 rounded_rectangle_pos  =  vec2(0., 0.);
 	vec4 rounded_rectangle_color = vec4(0.8, 0.5, 1., 0.8);
-	float rounded_rectangle_r = 16.;
+	float rounded_rectangle_r = 16. + size.x * 0.01;
 	
 	color = draw_rounded_rectangle(color, pixel_pos, rounded_rectangle_color,rounded_rectangle_pos, rounded_rectangle_size.x, rounded_rectangle_size.y, rounded_rectangle_r);
 //	color = draw_triangle(color, pixel_pos, triangle_color, triangle_pos, triangle_size.x, triangle_size.y);

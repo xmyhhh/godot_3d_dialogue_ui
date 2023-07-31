@@ -89,7 +89,7 @@ void fragment() {
 
 	vec2 circle_pos   = vec2(0., 0.);
 	vec4 circle_color = vec4(0.0, 0.5, 1., 0.8);
-	float circle_r    = 28.;
+	float circle_r    = min(size.x, size.y)* 0.3 + 5.;
 	
 //	color = draw_rounded_rectandgle(color, pixel_pos, rounded_rectangle_color,rounded_rectangle_pos, rounded_rectangle_size.x, rounded_rectangle_size.y, rounded_rectangle_r);
 //	color = draw_triangle(color, pixel_pos, triangle_color, triangle_pos, triangle_size.x, triangle_size.y);
