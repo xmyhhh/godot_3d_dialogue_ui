@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddmodmxojemun"]
+[gd_scene load_steps=15 format=3 uid="uid://ddmodmxojemun"]
 
 [ext_resource type="Script" path="res://bil.gd" id="1_mwlmx"]
+[ext_resource type="Script" path="res://smart_label_bg.gd" id="2_gmlet"]
 [ext_resource type="Shader" path="res://dialogue_center.gdshader" id="2_l2wnf"]
 [ext_resource type="Shader" path="res://dialogue_top.gdshader" id="3_e2186"]
 [ext_resource type="Shader" path="res://dialogue_buttom.gdshader" id="4_g6hhg"]
@@ -17,7 +18,7 @@ size = Vector2(20, 20)
 render_priority = 1
 shader = ExtResource("3_e2186")
 shader_parameter/size = Vector2(512, 256)
-shader_parameter/origin_offset = Vector3(-1.81689, 0.972888, 0)
+shader_parameter/origin_offset = Vector3(-1.81689, 1.27289, 0)
 
 [sub_resource type="Gradient" id="Gradient_dx55c"]
 
@@ -30,13 +31,13 @@ height = 256
 render_priority = 0
 shader = ExtResource("2_l2wnf")
 shader_parameter/size = Vector2(512, 256)
-shader_parameter/origin_offset = Vector3(0, 0.5, 0)
+shader_parameter/origin_offset = Vector3(0, 0.8, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vfcr1"]
 render_priority = 1
 shader = ExtResource("4_g6hhg")
 shader_parameter/size = Vector2(512, 256)
-shader_parameter/origin_offset = Vector3(1.89985, 0.0520006, 0)
+shader_parameter/origin_offset = Vector3(1.89985, 0.352001, 0)
 
 [node name="Node3D" type="Node3D"]
 
@@ -55,6 +56,7 @@ script = ExtResource("1_mwlmx")
 
 [node name="top" type="Label3D" parent="player/dialog box"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81689, 0.472888, 0)
+script = ExtResource("2_gmlet")
 
 [node name="top_bg" type="Sprite3D" parent="player/dialog box/top"]
 material_override = SubResource("ShaderMaterial_pwwmq")
