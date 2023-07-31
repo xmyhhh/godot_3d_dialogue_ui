@@ -73,7 +73,12 @@ billboard = 1
 render_priority = 2
 outline_render_priority = 2
 modulate = Color(0.0470588, 0.0941176, 0.219608, 1)
-text = "dasd, afF s, sdaf ,sa as "
+text = "dasd, afF s, sdaf ,sa as sadasd
+asdasdsad
+sadsdsafda ad
+ad adf
+ adsfasfa f
+ dasf"
 outline_size = 1
 autowrap_mode = 3
 
