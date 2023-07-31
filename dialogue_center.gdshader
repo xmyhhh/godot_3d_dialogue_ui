@@ -1,7 +1,7 @@
 shader_type spatial;
-render_mode unshaded, diffuse_toon, ambient_light_disabled;
+render_mode unshaded, diffuse_toon, ambient_light_disabled, skip_vertex_transform;
 uniform vec2 size = vec2(512.0, 256.0);
-uniform float origin_offset = 0.0;
+uniform vec3 origin_offset = vec3(0.0);
 
 vec4 draw_circle(vec4 in_color, vec2 in_pos, vec4 draw_color, vec2 pos, float r){
 	vec4 out_color = in_color;
@@ -58,7 +58,7 @@ void vertex(){
 	mat4 CAMERA_MATRIX = VIEW_MATRIX;
 	mat4 WORLD_MATRIX = MODEL_MATRIX;
 
-	mat4 modelView = MODELVIEW_MATRIX;
+	mat4 modelView = CAMERA_MATRIX * WORLD_MATRIX;
 	// First colunm.
 	modelView[0][0] = 1.0; 
 	modelView[0][1] = 0.0; 
@@ -73,10 +73,12 @@ void vertex(){
 	modelView[2][0] = 0.0; 
 	modelView[2][1] = 0.0; 
 	modelView[2][2] = 1.0; 
-
-	modelView[3][3] = origin_offset;
 	
-	MODELVIEW_MATRIX = modelView;
+    VERTEX =  (modelView * vec4(VERTEX, 1.0)).xyz ;
+	
+	vec4 offset_dir = VIEW_MATRIX  * MODEL_MATRIX * vec4(origin_offset, 1.0) - VIEW_MATRIX  * MODEL_MATRIX * vec4(0.,0.,0., 1.0);
+	float offset_dir_z_dis = dot(vec3(0, 0, -1), offset_dir.xyz);
+	VERTEX = VERTEX - offset_dir.xyz + vec3(origin_offset.x, origin_offset.y, 0.);
 }
 
 void fragment() {

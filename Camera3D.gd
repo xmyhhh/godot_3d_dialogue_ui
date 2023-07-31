@@ -24,7 +24,7 @@ var initial_rotation := rotation.y
 
 func _input(event: InputEvent) -> void:
 	# Mouse look (effective only if the mouse is captured)
-	if event is InputEventMouseMotion :
+	if event is InputEventMouseMotion and Input.is_key_label_pressed(KEY_C):
 		# Horizontal mouse look
 		rotation.y -= event.relative.x * MOUSE_SENSITIVITY
 		# Vertical mouse look, clamped to -90..90 degrees
@@ -49,9 +49,9 @@ func _process(delta: float) -> void:
 		motion.x = 0
 
 	if Input.is_key_label_pressed(KEY_Q):
-		motion.y = 1
-	elif Input.is_key_label_pressed(KEY_E):
 		motion.y = -1
+	elif Input.is_key_label_pressed(KEY_E):
+		motion.y = 1
 	else:
 		motion.y = 0
 
