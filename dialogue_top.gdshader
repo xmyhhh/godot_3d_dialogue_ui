@@ -2,6 +2,7 @@ shader_type spatial;
 render_mode unshaded, diffuse_toon, ambient_light_disabled, skip_vertex_transform;
 uniform vec2 size = vec2(64.0, 64.0);
 uniform vec3 origin_offset = vec3(0.0);
+uniform vec4 color_d  : source_color = vec4(1.0);
 
 vec4 draw_circle(vec4 in_color, vec2 in_pos, vec4 draw_color, vec2 pos, float r){
 	vec4 out_color = in_color;
@@ -90,7 +91,7 @@ void fragment() {
 
 	vec2 rounded_rectangle_size = vec2(size.x - 10., 40.);
 	vec2 rounded_rectangle_pos  =  vec2(0., 0.);
-	vec4 rounded_rectangle_color = vec4(0.8, 0.5, 1., 0.8);
+	vec4 rounded_rectangle_color = color_d;
 	float rounded_rectangle_r = 16. + size.x * 0.01;
 	
 	color = draw_rounded_rectangle(color, pixel_pos, rounded_rectangle_color,rounded_rectangle_pos, rounded_rectangle_size.x, rounded_rectangle_size.y, rounded_rectangle_r);
