@@ -10,15 +10,15 @@
 render_priority = 1
 shader = ExtResource("2_tgj0w")
 shader_parameter/size = Vector2(64, 64)
-shader_parameter/origin_offset = Vector3(-1.06543, 2.55624, 0)
+shader_parameter/origin_offset = Vector3(-1.17569, 2.60343, 0)
 shader_parameter/color_d = Color(0.466667, 0.0666667, 0.631373, 1)
 
 [sub_resource type="Gradient" id="Gradient_dx55c"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3vjm5"]
 gradient = SubResource("Gradient_dx55c")
-width = 141
-height = 74
+width = 194
+height = 76
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i6q5c"]
 render_priority = 0
@@ -29,30 +29,30 @@ shader_parameter/color_d = Color(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_a43ss"]
 gradient = SubResource("Gradient_dx55c")
-width = 231
-height = 123
+width = 298
+height = 121
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vfcr1"]
 render_priority = 1
 shader = ExtResource("5_d48qt")
 shader_parameter/size = Vector2(64, 64)
-shader_parameter/origin_offset = Vector3(1.07698, 1.4686, 0)
+shader_parameter/origin_offset = Vector3(1.31446, 1.54081, 0)
 shader_parameter/color_d = Color(0.0588235, 0.945098, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_86v7t"]
 gradient = SubResource("Gradient_dx55c")
-width = 97
-height = 73
+width = 73
 
-[node name="dialog box" type="Node3D" node_paths=PackedStringArray("top", "center", "buttom")]
+[node name="dialog box" type="Node3D" node_paths=PackedStringArray("top_node", "center_node", "buttom_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08397, 0)
 script = ExtResource("1_jfghw")
-top = NodePath("top_bg")
-center = NodePath("center_bg")
-buttom = NodePath("buttom_bg")
+top_node = NodePath("top_bg")
+center_node = NodePath("center_bg")
+buttom_node = NodePath("buttom_bg")
+reposition = true
 
 [node name="top_bg" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17569, 0.535011, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17569, 0.603426, 0)
 material_override = SubResource("ShaderMaterial_pwwmq")
 gi_mode = 0
 billboard = 1
@@ -65,7 +65,7 @@ billboard = 1
 render_priority = 2
 outline_render_priority = 2
 modulate = Color(0.0588235, 0.945098, 1, 1)
-text = "Mr. Dotfsa"
+text = "Ms的士速递飒飒的"
 outline_size = 1
 
 [node name="center_bg" type="Sprite3D" parent="."]
@@ -82,14 +82,15 @@ render_priority = 2
 outline_render_priority = 2
 modulate = Color(0.427451, 0.0470588, 0.584314, 1)
 outline_modulate = Color(0.427451, 0.0470588, 0.584314, 1)
-text = "dasd, afF s, sdaf ,sa as sadasd
-123124124132431113431513
-143143242	431241414141341"
+text = "dasd, afF s, sdaf ,sa 13 12212
+dasd, afF s, sdaf ,sa 31 1212121
+dasd, afF s, sdaf ,sa 21312 21
+"
 outline_size = 4
 autowrap_mode = 3
 
 [node name="buttom_bg" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31446, -0.447999, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31446, -0.459189, 0)
 material_override = SubResource("ShaderMaterial_vfcr1")
 gi_mode = 0
 billboard = 1
@@ -103,5 +104,5 @@ render_priority = 2
 outline_render_priority = 2
 modulate = Color(0.427451, 0.0470588, 0.584314, 1)
 outline_modulate = Color(0.427451, 0.0470588, 0.584314, 1)
-text = "Yesa"
+text = "..."
 outline_size = 4

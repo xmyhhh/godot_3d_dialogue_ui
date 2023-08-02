@@ -26,17 +26,7 @@ material_override = SubResource("StandardMaterial3D_h32qr")
 mesh = SubResource("CapsuleMesh_b38mj")
 
 [node name="dialog box" parent="player" instance=ExtResource("2_vrmbq")]
-
-[node name="top_bg" parent="player/dialog box" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06543, 0.556235, 0)
-
-[node name="center" parent="player/dialog box/center_bg" index="0"]
-text = "dqweqweqweqweqwe
-qeqweqweqweqweqw
-qeqweqweqweqweqw"
-
-[node name="buttom_bg" parent="player/dialog box" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07698, -0.531401, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67377, 0)
 
 [node name="dialog box2" parent="player" instance=ExtResource("3_4cva6")]
 visible = false
@@ -87,5 +77,3 @@ layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
 text = "test 3"
-
-[editable path="player/dialog box"]

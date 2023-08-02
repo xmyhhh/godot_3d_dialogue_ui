@@ -17,8 +17,7 @@ vec4 draw_rounded_rectangle(vec4 in_color,vec2 in_pos, vec4 draw_color, vec2 pos
 	vec4 out_color = in_color;
 	vec2 in_pos_to_center = in_pos - pos;
 	
-	if( 2. * r > width || 2. * r > height)
-		return out_color;
+
 
 	if( abs(in_pos_to_center.x) > width/2.0 || abs(in_pos_to_center.y) > height/2.0)
 		return out_color;
@@ -92,7 +91,7 @@ void fragment() {
 	vec2 rounded_rectangle_size = vec2(size.x - 10., 40.);
 	vec2 rounded_rectangle_pos  =  vec2(0., 0.);
 	vec4 rounded_rectangle_color = color_d;
-	float rounded_rectangle_r = 16. + size.x * 0.01;
+	float rounded_rectangle_r = 20.;
 	
 	color = draw_rounded_rectangle(color, pixel_pos, rounded_rectangle_color,rounded_rectangle_pos, rounded_rectangle_size.x, rounded_rectangle_size.y, rounded_rectangle_r);
 //	color = draw_triangle(color, pixel_pos, triangle_color, triangle_pos, triangle_size.x, triangle_size.y);

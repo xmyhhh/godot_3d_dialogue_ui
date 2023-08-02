@@ -74,6 +74,7 @@ autowrap_mode = 3
 
 [node name="buttom_bg" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31446, -0.447999, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_vfcr1")
 gi_mode = 0
 billboard = 1
