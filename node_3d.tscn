@@ -14,8 +14,9 @@ size = Vector2(20, 20)
 
 [sub_resource type="PrismMesh" id="PrismMesh_ydy0a"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("dialog_box")]
 script = ExtResource("1_7nj0j")
+dialog_box = NodePath("player/dialog box")
 
 [node name="ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_do24p")
@@ -77,3 +78,7 @@ layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
 text = "test 3"
+
+[connection signal="pressed" from="Control/VBoxContainer/Button" to="." method="test1"]
+[connection signal="pressed" from="Control/VBoxContainer/Button2" to="." method="test2"]
+[connection signal="pressed" from="Control/VBoxContainer/Button3" to="." method="test3"]
