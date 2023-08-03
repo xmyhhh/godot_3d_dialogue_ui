@@ -14,9 +14,8 @@ size = Vector2(20, 20)
 
 [sub_resource type="PrismMesh" id="PrismMesh_ydy0a"]
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("dialog_box")]
+[node name="Node3D" type="Node3D"]
 script = ExtResource("1_7nj0j")
-dialog_box = NodePath("player/dialog box")
 
 [node name="ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_do24p")
@@ -27,7 +26,6 @@ material_override = SubResource("StandardMaterial3D_h32qr")
 mesh = SubResource("CapsuleMesh_b38mj")
 
 [node name="dialog box" parent="player" instance=ExtResource("2_vrmbq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67377, 0)
 
 [node name="dialog box2" parent="player" instance=ExtResource("3_4cva6")]
 visible = false
@@ -36,10 +34,6 @@ visible = false
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.0190063, 0.801108, 0.294617)
 visible = false
 mesh = SubResource("PrismMesh_ydy0a")
-
-[node name="SubViewport" type="SubViewport" parent="player"]
-disable_3d = true
-transparent_bg = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)

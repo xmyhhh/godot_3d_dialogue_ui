@@ -1,11 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://cyn8efrq8y60n"]
+[gd_scene load_steps=17 format=3 uid="uid://cyn8efrq8y60n"]
 
 [ext_resource type="Script" path="res://dialogBox/dialogBox.gd" id="1_jfghw"]
 [ext_resource type="Shader" path="res://dialogBox/dialogue_top.gdshader" id="2_tgj0w"]
 [ext_resource type="Script" path="res://dialogBox/smart_label_bg.gd" id="3_bilx3"]
 [ext_resource type="Shader" path="res://dialogBox/dialogue_center.gdshader" id="4_g7pp3"]
 [ext_resource type="Shader" path="res://dialogBox/dialogue_buttom.gdshader" id="5_d48qt"]
-[ext_resource type="Shader" path="res://dialogBox/prefab/gradient_occlusion.gdshader" id="5_ti4u8"]
+[ext_resource type="Shader" path="res://dialogBox/gradient_occlusion.gdshader" id="5_xkf4q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwwmq"]
 render_priority = 1
@@ -34,28 +34,19 @@ width = 287
 height = 123
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vwxo5"]
-render_priority = 0
-shader = ExtResource("5_ti4u8")
-shader_parameter/flip = true
+render_priority = 3
+shader = ExtResource("5_xkf4q")
+shader_parameter/size = Vector2(64, 64)
+shader_parameter/origin_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_h7ts6"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3ei88"]
 gradient = SubResource("Gradient_h7ts6")
 width = 256
-height = 32
+height = 256
 fill_from = Vector2(1, 0)
 fill_to = Vector2(1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffdo7"]
-
-[sub_resource type="Gradient" id="Gradient_7jjwx"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qv5fd"]
-gradient = SubResource("Gradient_7jjwx")
-width = 256
-height = 32
-fill_from = Vector2(1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vfcr1"]
 render_priority = 1
@@ -103,9 +94,9 @@ region_rect = Rect2(-142.5, -57.75, 611, 418)
 script = ExtResource("3_bilx3")
 
 [node name="center" type="Label3D" parent="center_bg"]
-billboard = 1
-render_priority = 2
-outline_render_priority = 2
+offset = Vector2(0, -9.19)
+render_priority = 1
+outline_render_priority = 1
 modulate = Color(0.427451, 0.0470588, 0.584314, 1)
 outline_modulate = Color(0.427451, 0.0470588, 0.584314, 1)
 text = "this is test content, if change, 
@@ -115,18 +106,11 @@ outline_size = 4
 autowrap_mode = 3
 
 [node name="occlusion_top" type="Sprite3D" parent="center_bg"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47706, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.269089, 0)
 material_override = SubResource("ShaderMaterial_vwxo5")
 billboard = 1
-render_priority = 8
+no_depth_test = true
 texture = SubResource("GradientTexture2D_3ei88")
-
-[node name="occlusion_buttom" type="Sprite3D" parent="center_bg"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.510602, 0)
-material_override = SubResource("ShaderMaterial_ffdo7")
-billboard = 1
-render_priority = 8
-texture = SubResource("GradientTexture2D_qv5fd")
 
 [node name="buttom_bg" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28575, -0.423303, 0)

@@ -49,7 +49,7 @@ func _process(delta):
 			self_init_pos = self.transform.origin
 			center_init_size = center_text_node.get_aabb().size
 			top_init_pos = top_node.transform.origin
-			buttom_init_pos = buttom_node.transform.origin			
+			buttom_init_pos = buttom_node.transform.origin
 			return
 			
 		if(reposition):
