@@ -88,7 +88,7 @@ void fragment() {
 	pixel_pos.y = -pixel_pos.y;
 	vec4 color = vec4(0.);
 
-	vec2 circle_pos   = vec2(0., 0.);
+	vec2 circle_pos   = vec2(0., -3.);
 	vec4 circle_color = color_d;
 	float circle_r    = (size.x + size.y) / 2.0 * 0.27 ;
 	

@@ -29,14 +29,14 @@ shader_parameter/color_d = Color(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_a43ss"]
 gradient = SubResource("Gradient_dx55c")
-width = 298
-height = 121
+width = 287
+height = 123
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vfcr1"]
 render_priority = 1
 shader = ExtResource("5_d48qt")
 shader_parameter/size = Vector2(64, 64)
-shader_parameter/origin_offset = Vector3(1.31446, 1.54081, 0)
+shader_parameter/origin_offset = Vector3(1.28575, 1.5767, 0)
 shader_parameter/color_d = Color(0.0588235, 0.945098, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_86v7t"]
@@ -82,15 +82,14 @@ render_priority = 2
 outline_render_priority = 2
 modulate = Color(0.427451, 0.0470588, 0.584314, 1)
 outline_modulate = Color(0.427451, 0.0470588, 0.584314, 1)
-text = "dasd, afF s, sdaf ,sa 13 12212
-dasd, afF s, sdaf ,sa 31 1212121
-dasd, afF s, sdaf ,sa 21312 21
+text = "this is test content, if change, 
+pleast reposition top and buttom node's position
 "
 outline_size = 4
 autowrap_mode = 3
 
 [node name="buttom_bg" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31446, -0.459189, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28575, -0.423303, 0)
 material_override = SubResource("ShaderMaterial_vfcr1")
 gi_mode = 0
 billboard = 1
