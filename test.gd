@@ -31,6 +31,7 @@ var test_data = [
 ]
 
 func test1():
+
 	dialog_box.set_top(test_data[0]["name"])
 	dialog_box.set_center(test_data[0]["content"])
 	dialog_box.set_buttom(test_data[0]["end"])

@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyn8efrq8y60n"]
+[gd_scene load_steps=20 format=3 uid="uid://cyn8efrq8y60n"]
 
 [ext_resource type="Script" path="res://dialogBox/dialogBox.gd" id="1_jfghw"]
 [ext_resource type="Shader" path="res://dialogBox/dialogue_top.gdshader" id="2_tgj0w"]
 [ext_resource type="Script" path="res://dialogBox/smart_label_bg.gd" id="3_bilx3"]
 [ext_resource type="Shader" path="res://dialogBox/dialogue_center.gdshader" id="4_g7pp3"]
 [ext_resource type="Shader" path="res://dialogBox/dialogue_buttom.gdshader" id="5_d48qt"]
+[ext_resource type="Shader" path="res://dialogBox/prefab/gradient_occlusion.gdshader" id="5_ti4u8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwwmq"]
 render_priority = 1
@@ -32,6 +33,30 @@ gradient = SubResource("Gradient_dx55c")
 width = 287
 height = 123
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwxo5"]
+render_priority = 0
+shader = ExtResource("5_ti4u8")
+shader_parameter/flip = true
+
+[sub_resource type="Gradient" id="Gradient_h7ts6"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3ei88"]
+gradient = SubResource("Gradient_h7ts6")
+width = 256
+height = 32
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffdo7"]
+
+[sub_resource type="Gradient" id="Gradient_7jjwx"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qv5fd"]
+gradient = SubResource("Gradient_7jjwx")
+width = 256
+height = 32
+fill_from = Vector2(1, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vfcr1"]
 render_priority = 1
 shader = ExtResource("5_d48qt")
@@ -53,6 +78,7 @@ reposition = true
 
 [node name="top_bg" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17569, 0.603426, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_pwwmq")
 gi_mode = 0
 billboard = 1
@@ -88,8 +114,23 @@ pleast reposition top and buttom node's position
 outline_size = 4
 autowrap_mode = 3
 
+[node name="occlusion_top" type="Sprite3D" parent="center_bg"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47706, 0)
+material_override = SubResource("ShaderMaterial_vwxo5")
+billboard = 1
+render_priority = 8
+texture = SubResource("GradientTexture2D_3ei88")
+
+[node name="occlusion_buttom" type="Sprite3D" parent="center_bg"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.510602, 0)
+material_override = SubResource("ShaderMaterial_ffdo7")
+billboard = 1
+render_priority = 8
+texture = SubResource("GradientTexture2D_qv5fd")
+
 [node name="buttom_bg" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28575, -0.423303, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_vfcr1")
 gi_mode = 0
 billboard = 1

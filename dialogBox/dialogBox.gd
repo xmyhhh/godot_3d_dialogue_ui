@@ -17,8 +17,11 @@ extends Node3D
 @export var buttom_text_reach_max_hide:bool = true
 
 @export var center_text_reach_max_auto_scroll:bool = true
-@export var auto_scroll_speed:float = 2.0
 
+@export var auto_scroll_speed:float = 2.0
+@export var auto_scroll_duration:float = 2.0
+
+#align
 var self_init_pos
 var center_init_size
 var top_init_pos
@@ -28,6 +31,13 @@ var init = false
 var top_text_node
 var center_text_node
 var buttom_text_node
+
+#text arrage
+var dialog_content = {
+	"top": "",
+	"center": "",
+	"buttom": ""
+}
 
 func _process(delta):
 	if(top_node && center_node && buttom_node):
@@ -52,8 +62,13 @@ func _process(delta):
 			self.transform.origin.y = self_init_pos.y + y_change
 
 func set_top(content):
-	top_text_node.text = content
-	pass
+	dialog_content["top"] = content
+	
+	if(top_text_reach_max_hide and top_text_max_char < content.length()):
+		pass
+	else:
+		top_text_node.text = content
+	
 
 func set_center(content):
 	center_text_node.text = content
