@@ -14,8 +14,9 @@ size = Vector2(20, 20)
 
 [sub_resource type="PrismMesh" id="PrismMesh_ydy0a"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("dialog_box")]
 script = ExtResource("1_7nj0j")
+dialog_box = NodePath("player/dialog box")
 
 [node name="ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_do24p")

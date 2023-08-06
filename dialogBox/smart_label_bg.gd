@@ -2,6 +2,8 @@
 extends Node3D
 
 @onready var origin_offset = Vector3(0, 0, 0)
+@export var occlusion_node:Node
+
 
 func _process(delta):
 	origin_offset = transform.origin + Vector3(0, 2, 0)
@@ -19,5 +21,11 @@ func _process(delta):
 		var VIEW_MATRIX = cur_cam.global_transform
 		var offset_dir = origin_offset * MODEL_MATRIX - Vector3(0, 0, 0) * MODEL_MATRIX
 		label_node.global_transform.origin = global_transform.origin - offset_dir ;
-		label_node.global_transform.origin =  ( label_node.global_transform.origin * VIEW_MATRIX + Vector3(origin_offset.x, origin_offset.y,  -0.1)) * VIEW_MATRIX.inverse() 
+		label_node.global_transform.origin =  ( label_node.global_transform.origin * VIEW_MATRIX + Vector3(origin_offset.x, origin_offset.y,  0.0)) * VIEW_MATRIX.inverse() 
+	
 
+	if(occlusion_node != null):
+		occlusion_node.texture.width = label_pixel_size.x
+		occlusion_node.texture.height = label_pixel_size.y
+		occlusion_node.material_override.set_shader_parameter("size", label_pixel_size)
+		occlusion_node.material_override.set_shader_parameter("origin_offset", origin_offset)

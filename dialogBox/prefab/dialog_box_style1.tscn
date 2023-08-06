@@ -36,15 +36,16 @@ height = 123
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vwxo5"]
 render_priority = 3
 shader = ExtResource("5_xkf4q")
-shader_parameter/size = Vector2(64, 64)
-shader_parameter/origin_offset = Vector3(0, 0, 0)
+shader_parameter/size = Vector2(256, 256)
+shader_parameter/origin_offset = Vector3(0, 2, 0)
+shader_parameter/color_d = Color(1, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_h7ts6"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3ei88"]
 gradient = SubResource("Gradient_h7ts6")
-width = 256
-height = 256
+width = 287
+height = 123
 fill_from = Vector2(1, 0)
 fill_to = Vector2(1, 1)
 
@@ -85,16 +86,18 @@ modulate = Color(0.0588235, 0.945098, 1, 1)
 text = "Ms的士速递飒飒的"
 outline_size = 1
 
-[node name="center_bg" type="Sprite3D" parent="."]
+[node name="center_bg" type="Sprite3D" parent="." node_paths=PackedStringArray("occlusion_node")]
 material_override = SubResource("ShaderMaterial_i6q5c")
 gi_mode = 0
 billboard = 1
 texture = SubResource("GradientTexture2D_a43ss")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 script = ExtResource("3_bilx3")
+occlusion_node = NodePath("occlusion")
 
 [node name="center" type="Label3D" parent="center_bg"]
 offset = Vector2(0, -9.19)
+billboard = 1
 render_priority = 1
 outline_render_priority = 1
 modulate = Color(0.427451, 0.0470588, 0.584314, 1)
@@ -105,8 +108,7 @@ pleast reposition top and buttom node's position
 outline_size = 4
 autowrap_mode = 3
 
-[node name="occlusion_top" type="Sprite3D" parent="center_bg"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.269089, 0)
+[node name="occlusion" type="Sprite3D" parent="center_bg"]
 material_override = SubResource("ShaderMaterial_vwxo5")
 billboard = 1
 no_depth_test = true
