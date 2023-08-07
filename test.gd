@@ -25,7 +25,7 @@ var test_data = [
 	},
 	{
 		'name': "Mr.Dot",
-		'content':"dsadasfas asdasdas fsad a",
+		'content':"ok!",
 		'end':"..."
 	}
 ]
