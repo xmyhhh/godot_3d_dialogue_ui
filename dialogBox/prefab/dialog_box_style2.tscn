@@ -46,10 +46,10 @@ region_rect = Rect2(-142.5, -57.75, 611, 418)
 script = ExtResource("3_0mdtf")
 
 [node name="top" type="Label3D" parent="top_bg"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0491896, 0)
 billboard = 1
 render_priority = 2
 outline_render_priority = 2
-modulate = Color(0.0588235, 0.945098, 1, 1)
 text = "Mr. Dotfsa"
 outline_size = 1
 
@@ -60,17 +60,15 @@ texture = ExtResource("4_78brx")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 
 [node name="center" type="Label3D" parent="center_bg"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.334856, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.316176, 0)
 billboard = 1
 render_priority = 2
 outline_render_priority = 2
 modulate = Color(0.0588235, 0.945098, 1, 1)
 outline_modulate = Color(0.0588235, 0.945098, 1, 1)
-text = "dasd, afF s, sdaf ,sa as sadasd
-123124124132431113431513
-143143242	431241414141341"
-outline_size = 4
-autowrap_mode = 3
+text = "click here to add you ai!"
+outline_size = 2
+autowrap_mode = 2
 
 [node name="buttom_bg" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31446, -0.447999, 0)

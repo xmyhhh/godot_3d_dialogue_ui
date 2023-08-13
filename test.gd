@@ -1,11 +1,11 @@
 extends Node3D
 
 @export var dialog_box:Node
-
+@export var player_node:Node
 var test_data = [
 	{
 		'name': "Mr.Dot",
-		'content':"dsadasfas asdasdas fsad a",
+		'content':"dsadasfas asdasdas fsad a  dasd ffa saa !!",
 		'end':"..."
 	},
 	{
@@ -24,7 +24,7 @@ var test_data = [
 		'end':"..."
 	},
 	{
-		'name': "Mr.Dot",
+		'name': "Mr",
 		'content':"ok!",
 		'end':"..."
 	}
@@ -45,3 +45,6 @@ func test3():
 	dialog_box.set_top(test_data[2]["name"])
 	dialog_box.set_center(test_data[2]["content"])
 	dialog_box.set_buttom(test_data[2]["end"])
+
+func player_move():
+	player_node.transform.origin.x += 0.5
