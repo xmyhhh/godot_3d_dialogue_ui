@@ -23,8 +23,7 @@ func _process(delta):
 	if(init):
 		label_pixel_size.x = max(label_pixel_size.x, min_size.x)
 		label_pixel_size.y = max(label_pixel_size.y, min_size.y)
-		
-				
+
 	if(igone_shading):
 		return
 		

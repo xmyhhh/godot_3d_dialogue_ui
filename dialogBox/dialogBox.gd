@@ -61,7 +61,8 @@ func _process(delta):
 			top_node.transform.origin.x = top_init_pos.x - x_change
 			buttom_node.transform.origin.x = buttom_init_pos.x + x_change
 			self.transform.origin.y = self_init_pos.y + y_change
-
+		update_render_layer()
+		
 func set_top(content):
 	dialog_content["top"] = content
 	if(top_text_reach_max_hide and top_text_max_char < content.length()):
@@ -90,3 +91,35 @@ func set_center(content):
 func set_buttom(content):
 	buttom_text_node.text = content
 	pass
+
+
+func update_render_layer():
+	var cur_cam = get_tree().get_root().get_viewport().get_camera_3d()
+	var projection = cur_cam.get_camera_projection()
+
+	var VIEW_MATRIX = cur_cam.global_transform
+	var view_space =  global_transform.origin * VIEW_MATRIX 
+	var clip_space_vec4 =    projection  * Vector4(view_space.x, view_space.y, view_space.z, 1)
+	clip_space_vec4 /= clip_space_vec4.w
+	
+	if(clip_space_vec4.z > 0.99):
+		hide()
+	else:
+		show()
+	
+	var layer_index_base = int((1. - clip_space_vec4.z) * 1000000)
+	var layer_index_base_p = layer_index_base * 1.2
+	var layer_index_base_pp = layer_index_base_p * 1.2
+	print(get_path(), "layer_index_base:" , layer_index_base)
+
+	top_node.sorting_offset = layer_index_base_p
+	var p = top_node.sorting_offset
+	top_text_node.sorting_offset = layer_index_base_pp
+	
+	center_node.sorting_offset = layer_index_base
+	center_text_node.sorting_offset = layer_index_base_pp
+	
+	buttom_node.sorting_offset = layer_index_base_p
+	buttom_text_node.sorting_offset = layer_index_base_pp
+	pass
+	

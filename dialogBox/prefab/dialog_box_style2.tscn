@@ -34,7 +34,6 @@ billboard = 1
 texture = SubResource("GradientTexture2D_3vjm5")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 script = ExtResource("3_0mdtf")
-igone_shading = null
 
 [node name="top" type="Label3D" parent="top_bg"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0491896, 0)

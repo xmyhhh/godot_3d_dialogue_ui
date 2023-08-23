@@ -1,14 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://cyn8efrq8y60n"]
+[gd_scene load_steps=13 format=3 uid="uid://cyn8efrq8y60n"]
 
 [ext_resource type="Script" path="res://dialogBox/dialogBox.gd" id="1_jfghw"]
 [ext_resource type="Shader" path="res://dialogBox/dialogue_top.gdshader" id="2_tgj0w"]
 [ext_resource type="Script" path="res://dialogBox/smart_label_bg.gd" id="3_bilx3"]
 [ext_resource type="Shader" path="res://dialogBox/dialogue_center.gdshader" id="4_g7pp3"]
 [ext_resource type="Shader" path="res://dialogBox/dialogue_buttom.gdshader" id="5_d48qt"]
-[ext_resource type="Shader" path="res://dialogBox/gradient_occlusion.gdshader" id="5_xkf4q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwwmq"]
-render_priority = 1
+render_priority = 0
 shader = ExtResource("2_tgj0w")
 shader_parameter/size = Vector2(64, 64)
 shader_parameter/origin_offset = Vector3(-1.17569, 2.60343, 0)
@@ -33,24 +32,8 @@ gradient = SubResource("Gradient_dx55c")
 width = 287
 height = 123
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwxo5"]
-render_priority = 3
-shader = ExtResource("5_xkf4q")
-shader_parameter/size = Vector2(256, 256)
-shader_parameter/origin_offset = Vector3(0, 2, 0)
-shader_parameter/color_d = Color(1, 1, 1, 1)
-
-[sub_resource type="Gradient" id="Gradient_h7ts6"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3ei88"]
-gradient = SubResource("Gradient_h7ts6")
-width = 287
-height = 123
-fill_from = Vector2(1, 0)
-fill_to = Vector2(1, 1)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vfcr1"]
-render_priority = 1
+render_priority = 0
 shader = ExtResource("5_d48qt")
 shader_parameter/size = Vector2(64, 64)
 shader_parameter/origin_offset = Vector3(1.28575, 1.5767, 0)
@@ -75,12 +58,9 @@ gi_mode = 0
 texture = SubResource("GradientTexture2D_3vjm5")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 script = ExtResource("3_bilx3")
-igone_shading = null
 
 [node name="top" type="Label3D" parent="top_bg"]
 billboard = 1
-render_priority = 2
-outline_render_priority = 2
 modulate = Color(0.0588235, 0.945098, 1, 1)
 text = "Ms的士速递飒飒的"
 outline_size = 1
@@ -91,14 +71,11 @@ gi_mode = 0
 texture = SubResource("GradientTexture2D_a43ss")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 script = ExtResource("3_bilx3")
-occlusion_node = NodePath("occlusion")
-igone_shading = null
+occlusion_node = NodePath("")
 
 [node name="center" type="Label3D" parent="center_bg"]
 offset = Vector2(0, -9.19)
 billboard = 1
-render_priority = 1
-outline_render_priority = 1
 modulate = Color(0.427451, 0.0470588, 0.584314, 1)
 outline_modulate = Color(0.427451, 0.0470588, 0.584314, 1)
 text = "this is test content, if change, 
@@ -107,13 +84,6 @@ pleast reposition top and buttom node's position
 outline_size = 4
 autowrap_mode = 3
 
-[node name="occlusion" type="Sprite3D" parent="center_bg"]
-visible = false
-material_override = SubResource("ShaderMaterial_vwxo5")
-billboard = 1
-no_depth_test = true
-texture = SubResource("GradientTexture2D_3ei88")
-
 [node name="buttom_bg" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28575, -0.423303, 0)
 material_override = SubResource("ShaderMaterial_vfcr1")
@@ -121,12 +91,9 @@ gi_mode = 0
 texture = SubResource("GradientTexture2D_86v7t")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 script = ExtResource("3_bilx3")
-igone_shading = null
 
 [node name="buttom" type="Label3D" parent="buttom_bg"]
 billboard = 1
-render_priority = 2
-outline_render_priority = 2
 modulate = Color(0.427451, 0.0470588, 0.584314, 1)
 outline_modulate = Color(0.427451, 0.0470588, 0.584314, 1)
 text = "..."

@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddmodmxojemun"]
+[gd_scene load_steps=11 format=3 uid="uid://ddmodmxojemun"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_7nj0j"]
 [ext_resource type="PackedScene" uid="uid://cyn8efrq8y60n" path="res://dialogBox/prefab/dialog_box_style1.tscn" id="2_vrmbq"]
-[ext_resource type="PackedScene" uid="uid://dod0ltpgttvgq" path="res://dialogBox/prefab/dialog_box_style2.tscn" id="3_4cva6"]
 [ext_resource type="Script" path="res://cam.gd" id="5_xjia1"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_do24p"]
@@ -24,9 +23,8 @@ albedo_color = Color(0.862745, 0.933333, 0.529412, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b38mj"]
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("dialog_box", "player_node")]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("player_node")]
 script = ExtResource("1_7nj0j")
-dialog_box = NodePath("player/dialog box2")
 player_node = NodePath("player")
 
 [node name="ground" type="MeshInstance3D" parent="."]
@@ -58,15 +56,22 @@ material_override = SubResource("StandardMaterial3D_sx3fk")
 mesh = SubResource("BoxMesh_2lmoo")
 
 [node name="player" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0107298, 0, 0)
 material_override = SubResource("StandardMaterial3D_h32qr")
 mesh = SubResource("CapsuleMesh_b38mj")
 
 [node name="dialog box" parent="player" instance=ExtResource("2_vrmbq")]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="dialog box2" parent="player" instance=ExtResource("3_4cva6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.385554, 2.26026, 0)
+[node name="player2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3714)
+material_override = SubResource("StandardMaterial3D_h32qr")
+mesh = SubResource("CapsuleMesh_b38mj")
+
+[node name="dialog box" parent="player2" node_paths=PackedStringArray("top_node", "center_node", "buttom_node") instance=ExtResource("2_vrmbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+top_node = NodePath("../../player/dialog box/top_bg")
+center_node = NodePath("../../player/dialog box/center_bg")
+buttom_node = NodePath("../../player/dialog box/buttom_bg")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
