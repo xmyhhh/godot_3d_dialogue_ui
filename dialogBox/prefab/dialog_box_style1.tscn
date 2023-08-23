@@ -72,10 +72,10 @@ reposition = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17569, 0.603426, 0)
 material_override = SubResource("ShaderMaterial_pwwmq")
 gi_mode = 0
-billboard = 1
 texture = SubResource("GradientTexture2D_3vjm5")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 script = ExtResource("3_bilx3")
+igone_shading = null
 
 [node name="top" type="Label3D" parent="top_bg"]
 billboard = 1
@@ -88,11 +88,11 @@ outline_size = 1
 [node name="center_bg" type="Sprite3D" parent="." node_paths=PackedStringArray("occlusion_node")]
 material_override = SubResource("ShaderMaterial_i6q5c")
 gi_mode = 0
-billboard = 1
 texture = SubResource("GradientTexture2D_a43ss")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 script = ExtResource("3_bilx3")
 occlusion_node = NodePath("occlusion")
+igone_shading = null
 
 [node name="center" type="Label3D" parent="center_bg"]
 offset = Vector2(0, -9.19)
@@ -116,13 +116,12 @@ texture = SubResource("GradientTexture2D_3ei88")
 
 [node name="buttom_bg" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28575, -0.423303, 0)
-visible = false
 material_override = SubResource("ShaderMaterial_vfcr1")
 gi_mode = 0
-billboard = 1
 texture = SubResource("GradientTexture2D_86v7t")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 script = ExtResource("3_bilx3")
+igone_shading = null
 
 [node name="buttom" type="Label3D" parent="buttom_bg"]
 billboard = 1

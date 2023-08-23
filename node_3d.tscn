@@ -26,7 +26,7 @@ albedo_color = Color(0.862745, 0.933333, 0.529412, 1)
 
 [node name="Node3D" type="Node3D" node_paths=PackedStringArray("dialog_box", "player_node")]
 script = ExtResource("1_7nj0j")
-dialog_box = NodePath("player/dialog box")
+dialog_box = NodePath("player/dialog box2")
 player_node = NodePath("player")
 
 [node name="ground" type="MeshInstance3D" parent="."]

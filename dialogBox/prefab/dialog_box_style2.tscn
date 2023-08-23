@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dod0ltpgttvgq"]
+[gd_scene load_steps=8 format=3 uid="uid://dod0ltpgttvgq"]
 
 [ext_resource type="Script" path="res://dialogBox/dialogBox.gd" id="1_g5ara"]
 [ext_resource type="Shader" path="res://dialogBox/dialogue_top.gdshader" id="2_gsmc7"]
 [ext_resource type="Script" path="res://dialogBox/smart_label_bg.gd" id="3_0mdtf"]
-[ext_resource type="Shader" path="res://dialogBox/dialogue_buttom.gdshader" id="4_1ik3e"]
 [ext_resource type="Texture2D" uid="uid://esevja8foatv" path="res://dialogBox/res/Vector 362.png" id="4_78brx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwwmq"]
@@ -20,21 +19,12 @@ gradient = SubResource("Gradient_dx55c")
 width = 141
 height = 74
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfcr1"]
-render_priority = 1
-shader = ExtResource("4_1ik3e")
-shader_parameter/size = Vector2(64, 64)
-shader_parameter/origin_offset = Vector3(1.31446, 1.552, 0)
-shader_parameter/color_d = Color(0.0588235, 0.945098, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_86v7t"]
-gradient = SubResource("Gradient_dx55c")
-width = 97
-height = 73
-
-[node name="dialog box2" type="Node3D"]
+[node name="dialog box2" type="Node3D" node_paths=PackedStringArray("top_node", "center_node", "buttom_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08397, 0)
 script = ExtResource("1_g5ara")
+top_node = NodePath("top_bg")
+center_node = NodePath("center_bg")
+buttom_node = NodePath("buttom_bg")
 
 [node name="top_bg" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17569, 0.806109, 0)
@@ -44,6 +34,7 @@ billboard = 1
 texture = SubResource("GradientTexture2D_3vjm5")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 script = ExtResource("3_0mdtf")
+igone_shading = null
 
 [node name="top" type="Label3D" parent="top_bg"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0491896, 0)
@@ -58,6 +49,8 @@ gi_mode = 0
 billboard = 1
 texture = ExtResource("4_78brx")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
+script = ExtResource("3_0mdtf")
+igone_shading = true
 
 [node name="center" type="Label3D" parent="center_bg"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.316176, 0)
@@ -73,14 +66,14 @@ autowrap_mode = 2
 [node name="buttom_bg" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31446, -0.447999, 0)
 visible = false
-material_override = SubResource("ShaderMaterial_vfcr1")
 gi_mode = 0
 billboard = 1
-texture = SubResource("GradientTexture2D_86v7t")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 script = ExtResource("3_0mdtf")
+igone_shading = true
 
 [node name="buttom" type="Label3D" parent="buttom_bg"]
+visible = false
 billboard = 1
 render_priority = 2
 outline_render_priority = 2
