@@ -23,9 +23,8 @@ albedo_color = Color(0.862745, 0.933333, 0.529412, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b38mj"]
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("player_node")]
+[node name="Node3D" type="Node3D"]
 script = ExtResource("1_7nj0j")
-player_node = NodePath("player")
 
 [node name="ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_do24p")
@@ -55,23 +54,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.80648, 0.515643, -4.26687)
 material_override = SubResource("StandardMaterial3D_sx3fk")
 mesh = SubResource("BoxMesh_2lmoo")
 
-[node name="player" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_h32qr")
-mesh = SubResource("CapsuleMesh_b38mj")
-
-[node name="dialog box" parent="player" instance=ExtResource("2_vrmbq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
 [node name="player2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3714)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.59461)
 material_override = SubResource("StandardMaterial3D_h32qr")
 mesh = SubResource("CapsuleMesh_b38mj")
 
-[node name="dialog box" parent="player2" node_paths=PackedStringArray("top_node", "center_node", "buttom_node") instance=ExtResource("2_vrmbq")]
+[node name="dialog box" parent="player2" instance=ExtResource("2_vrmbq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-top_node = NodePath("../../player/dialog box/top_bg")
-center_node = NodePath("../../player/dialog box/center_bg")
-buttom_node = NodePath("../../player/dialog box/buttom_bg")
+
+[node name="player3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.57315)
+material_override = SubResource("StandardMaterial3D_h32qr")
+mesh = SubResource("CapsuleMesh_b38mj")
+
+[node name="dialog box" parent="player3" instance=ExtResource("2_vrmbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)

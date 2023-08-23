@@ -102,14 +102,14 @@ func update_render_layer():
 	var clip_space_vec4 =    projection  * Vector4(view_space.x, view_space.y, view_space.z, 1)
 	clip_space_vec4 /= clip_space_vec4.w
 	
-	if(clip_space_vec4.z > 0.99):
+	if(clip_space_vec4.z > 0.99 or clip_space_vec4.z < 0.88):
 		hide()
 	else:
 		show()
 	
-	var layer_index_base = int((1. - clip_space_vec4.z) * 1000000)
-	var layer_index_base_p = layer_index_base * 1.2
-	var layer_index_base_pp = layer_index_base_p * 1.2
+	var layer_index_base = int((1. - clip_space_vec4.z) * 100000)
+	var layer_index_base_p = layer_index_base * 1.05
+	var layer_index_base_pp = layer_index_base_p * 1.05
 	print(get_path(), "layer_index_base:" , layer_index_base)
 
 	top_node.sorting_offset = layer_index_base_p

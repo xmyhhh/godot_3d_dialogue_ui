@@ -33,6 +33,8 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
+
+
 	var motion := Vector3()
 	if Input.is_key_label_pressed(KEY_W):
 		motion.z = -1
