@@ -6,20 +6,21 @@ extends Node3D
 @export var igone_shading:bool = false
 
 var min_size = null
+var label_pixel_size = null
 var init = false
 
 func get_min_aabb():
-	if(init):
-		return min_size
-	else:
-		return null
+	return min_size
+	
+func get_aabb():
+	return label_pixel_size
 
 func _process(delta):
-	origin_offset = transform.origin + Vector3(0, 2, 0)
 	var label_node = get_child(0)
-	var label_pixel_size = label_node.get_aabb().size / self.pixel_size
+	label_pixel_size = label_node.get_aabb().size / self.pixel_size
 	label_pixel_size.x += 60
-	label_pixel_size.y += 60
+	label_pixel_size.y += 70
+	
 	if(init):
 		label_pixel_size.x = max(label_pixel_size.x, min_size.x)
 		label_pixel_size.y = max(label_pixel_size.y, min_size.y)

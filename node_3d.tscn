@@ -23,8 +23,10 @@ albedo_color = Color(0.862745, 0.933333, 0.529412, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b38mj"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("dialog_box", "player_node")]
 script = ExtResource("1_7nj0j")
+dialog_box = NodePath("player2/dialog box")
+player_node = NodePath("player2")
 
 [node name="ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_do24p")
@@ -61,13 +63,6 @@ mesh = SubResource("CapsuleMesh_b38mj")
 
 [node name="dialog box" parent="player2" instance=ExtResource("2_vrmbq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="player3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.40665)
-material_override = SubResource("StandardMaterial3D_h32qr")
-mesh = SubResource("CapsuleMesh_b38mj")
-
-[node name="dialog box" parent="player3" instance=ExtResource("2_vrmbq")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)

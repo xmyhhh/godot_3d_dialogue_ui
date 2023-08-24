@@ -38,9 +38,13 @@ var dialog_content = {
 	"center": "",
 	"buttom": ""
 }
+var first_frame = true
 
 func _process(delta):
-	await get_tree().process_frame
+	if(first_frame):
+		first_frame = false
+		await get_tree().process_frame
+		
 	if(top_node && center_node && buttom_node):
 		if(not init):
 			init = true
@@ -52,18 +56,23 @@ func _process(delta):
 			top_init_pos = top_node.transform.origin
 			buttom_init_pos = buttom_node.transform.origin
 			return
-
-#		if(reposition):
-#			var y_change =  (center_node.get_min_aabb().y - center_init_size.y)  / 2.0
-#			var x_change =  (center_node.get_min_aabb().x - center_init_size.x)  / 2.0
-#			top_node.transform.origin.y = top_init_pos.y + y_change
-#			buttom_node.transform.origin.y = buttom_init_pos.y - y_change
-#			top_node.transform.origin.x = top_init_pos.x - x_change
-#			buttom_node.transform.origin.x = buttom_init_pos.x + x_change
-#			self.transform.origin.y = self_init_pos.y + y_change
+	
+		var top_pos = top_init_pos
+		var buttom_pos = buttom_init_pos
 		
-		billboard(top_node, top_init_pos)
-		billboard(buttom_node, buttom_init_pos)
+		if(reposition):
+			var y_change =  (center_node.get_aabb().y - center_init_size.y)  / 2.0
+			var x_change =  (center_node.get_aabb().x - center_init_size.x)  / 2.0
+			print(get_path(), "y_change:" , y_change)
+			print(get_path(), "x_change:" , x_change)
+			top_pos.y += y_change
+			buttom_pos.y -= y_change
+			top_pos.x -= x_change
+			buttom_pos.x += x_change
+			self.transform.origin.y = self_init_pos.y + y_change
+		
+		billboard(top_node, top_pos)
+		billboard(buttom_node, buttom_pos)
 		
 		update_render_layer()
 		
@@ -122,7 +131,7 @@ func update_render_layer():
 	var layer_index_base = int((1. - clip_space_vec4.z) * 100000)
 	var layer_index_base_p = layer_index_base * 1.001
 	var layer_index_base_pp = layer_index_base_p * 1.001
-	print(get_path(), "layer_index_base:" , layer_index_base)
+	
 
 	top_node.sorting_offset = layer_index_base_p
 	var p = top_node.sorting_offset
