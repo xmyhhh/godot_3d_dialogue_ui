@@ -63,7 +63,7 @@ func _process(delta):
 		if(reposition):
 			var y_change =  (center_node.get_aabb().y - center_init_size.y)  / 2.0
 			var x_change =  (center_node.get_aabb().x - center_init_size.x)  / 2.0
-			print(get_path(), "y_change", y_change)
+			
 			top_pos.y += y_change
 			buttom_pos.y -= y_change
 			top_pos.x -= x_change
@@ -83,21 +83,25 @@ func set_top(content):
 		top_text_node.text = content
 
 func set_center(content):
+	var m_timer
+	if(center_text_node.get_child(0) == null):
+		m_timer = Timer.new()
+		center_text_node.add_child(m_timer)
+		m_timer.one_shot = true
+		m_timer.connect("timeout", center_text_tick)
+	else:
+		m_timer = center_text_node.get_child(0)
+		
+	m_timer.stop()
+	
 	dialog_content["center"] = content
 	if(center_text_reach_max_hide and center_text_max_char < content.length()):
 		buttom_node.show()
 		center_text_node.text = dialog_content["center"].substr(0, center_text_max_char)
 		dialog_content["center"] = dialog_content["center"].substr(center_text_max_char, -1)
-		while(dialog_content["center"].length()> 0):
-			await get_tree().create_timer(auto_scroll_duration).timeout
-			if(dialog_content["center"].length()> center_text_max_char):
-				center_text_node.text = dialog_content["center"].substr(0, center_text_max_char)
-				dialog_content["center"] = dialog_content["center"].substr(center_text_max_char, -1)
-			else:
-				center_text_node.text = dialog_content["center"].substr(0, -1)
-				dialog_content["center"] = ""
-				buttom_node.hide()
+		m_timer.start(auto_scroll_duration)
 	else:
+		buttom_node.hide()
 		center_text_node.text = content
 	
 func set_buttom(content):
@@ -105,6 +109,19 @@ func set_buttom(content):
 	pass
 
 
+func center_text_tick():
+	print(get_path(), "center_text_tick")
+	if(dialog_content["center"].length()> center_text_max_char):
+		center_text_node.text = dialog_content["center"].substr(0, center_text_max_char)
+		dialog_content["center"] = dialog_content["center"].substr(center_text_max_char, -1)
+	else:
+		center_text_node.text = dialog_content["center"].substr(0, -1)
+		dialog_content["center"] = ""
+		buttom_node.hide()
+	if(dialog_content["center"].length()> 0):
+		var m_timer = center_text_node.get_child(0)
+		m_timer.start(auto_scroll_duration)
+		
 func billboard(target_node, target_origin_offset):
 	var cur_cam = get_tree().get_root().get_viewport().get_camera_3d()
 	if(cur_cam != null):
