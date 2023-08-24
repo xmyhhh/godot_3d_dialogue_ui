@@ -77,9 +77,9 @@ void vertex(){
 	
     VERTEX =  (modelView * vec4(VERTEX, 1.0)).xyz ;
 	
-	vec4 offset_dir = VIEW_MATRIX  * MODEL_MATRIX * vec4(origin_offset, 1.0) - VIEW_MATRIX  * MODEL_MATRIX * vec4(0.,0.,0., 1.0);
-	float offset_dir_z_dis = dot(vec3(0, 0, -1), offset_dir.xyz);
-	VERTEX = VERTEX - offset_dir.xyz + vec3(origin_offset.x, origin_offset.y, 0.);
+//	vec4 offset_dir = VIEW_MATRIX  * MODEL_MATRIX * vec4(origin_offset, 1.0) - VIEW_MATRIX  * MODEL_MATRIX * vec4(0.,0.,0., 1.0);
+//	float offset_dir_z_dis = dot(vec3(0, 0, -1), offset_dir.xyz);
+//	VERTEX = VERTEX - offset_dir.xyz + vec3(origin_offset.x, origin_offset.y, 0.);
 }
 
 void fragment() {

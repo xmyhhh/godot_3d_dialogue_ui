@@ -66,13 +66,12 @@ modulate = Color(0.0588235, 0.945098, 1, 1)
 text = "Ms的士速递飒飒的"
 outline_size = 1
 
-[node name="center_bg" type="Sprite3D" parent="." node_paths=PackedStringArray("occlusion_node")]
+[node name="center_bg" type="Sprite3D" parent="."]
 material_override = SubResource("ShaderMaterial_i6q5c")
 gi_mode = 0
 texture = SubResource("GradientTexture2D_a43ss")
 region_rect = Rect2(-142.5, -57.75, 611, 418)
 script = ExtResource("3_bilx3")
-occlusion_node = NodePath("")
 
 [node name="center" type="Label3D" parent="center_bg"]
 offset = Vector2(0, -9.19)

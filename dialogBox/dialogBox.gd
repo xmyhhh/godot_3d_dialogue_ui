@@ -53,14 +53,18 @@ func _process(delta):
 			buttom_init_pos = buttom_node.transform.origin
 			return
 
-		if(reposition):
-			var y_change =  (center_node.get_min_aabb().y - center_init_size.y)  / 2.0
-			var x_change =  (center_node.get_min_aabb().x - center_init_size.x)  / 2.0
-			top_node.transform.origin.y = top_init_pos.y + y_change
-			buttom_node.transform.origin.y = buttom_init_pos.y - y_change
-			top_node.transform.origin.x = top_init_pos.x - x_change
-			buttom_node.transform.origin.x = buttom_init_pos.x + x_change
-			self.transform.origin.y = self_init_pos.y + y_change
+#		if(reposition):
+#			var y_change =  (center_node.get_min_aabb().y - center_init_size.y)  / 2.0
+#			var x_change =  (center_node.get_min_aabb().x - center_init_size.x)  / 2.0
+#			top_node.transform.origin.y = top_init_pos.y + y_change
+#			buttom_node.transform.origin.y = buttom_init_pos.y - y_change
+#			top_node.transform.origin.x = top_init_pos.x - x_change
+#			buttom_node.transform.origin.x = buttom_init_pos.x + x_change
+#			self.transform.origin.y = self_init_pos.y + y_change
+		
+		billboard(top_node, top_init_pos)
+		billboard(buttom_node, buttom_init_pos)
+		
 		update_render_layer()
 		
 func set_top(content):
@@ -93,6 +97,14 @@ func set_buttom(content):
 	pass
 
 
+func billboard(target_node, target_origin_offset):
+	var cur_cam = get_tree().get_root().get_viewport().get_camera_3d()
+	if(cur_cam != null):
+		var VIEW_MATRIX = cur_cam.global_transform
+		target_node.transform.origin = Vector3(0, 0, 0) ;
+		target_node.global_transform.origin =  ( target_node.global_transform.origin * VIEW_MATRIX + Vector3(target_origin_offset.x, target_origin_offset.y,  0.0)) * VIEW_MATRIX.inverse() 
+
+
 func update_render_layer():
 	var cur_cam = get_tree().get_root().get_viewport().get_camera_3d()
 	var projection = cur_cam.get_camera_projection()
@@ -108,8 +120,8 @@ func update_render_layer():
 		show()
 	
 	var layer_index_base = int((1. - clip_space_vec4.z) * 100000)
-	var layer_index_base_p = layer_index_base * 1.05
-	var layer_index_base_pp = layer_index_base_p * 1.05
+	var layer_index_base_p = layer_index_base * 1.001
+	var layer_index_base_pp = layer_index_base_p * 1.001
 	print(get_path(), "layer_index_base:" , layer_index_base)
 
 	top_node.sorting_offset = layer_index_base_p
