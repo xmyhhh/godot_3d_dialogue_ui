@@ -63,8 +63,7 @@ func _process(delta):
 		if(reposition):
 			var y_change =  (center_node.get_aabb().y - center_init_size.y)  / 2.0
 			var x_change =  (center_node.get_aabb().x - center_init_size.x)  / 2.0
-			print(get_path(), "y_change:" , y_change)
-			print(get_path(), "x_change:" , x_change)
+			print(get_path(), "y_change", y_change)
 			top_pos.y += y_change
 			buttom_pos.y -= y_change
 			top_pos.x -= x_change

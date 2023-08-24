@@ -9,12 +9,6 @@ var min_size = null
 var label_pixel_size = null
 var init = false
 
-func get_min_aabb():
-	return min_size
-	
-func get_aabb():
-	return label_pixel_size
-
 func _process(delta):
 	var label_node = get_child(0)
 	label_pixel_size = label_node.get_aabb().size / self.pixel_size
@@ -37,4 +31,8 @@ func _process(delta):
 		init = true
 		min_size = label_pixel_size
 		
+func get_aabb():
+	return label_pixel_size * self.pixel_size
 
+func get_min_aabb():
+	return min_size *  self.pixel_size
