@@ -19,6 +19,10 @@ func _process(delta):
 		label_pixel_size.x = max(label_pixel_size.x, min_size.x)
 		label_pixel_size.y = max(label_pixel_size.y, min_size.y)
 
+	if(not init):
+		init = true
+		min_size = label_pixel_size
+
 	if(igone_shading):
 		return
 		
@@ -27,9 +31,7 @@ func _process(delta):
 	self.material_override.set_shader_parameter("size", label_pixel_size)
 	#self.material_override.set_shader_parameter("origin_offset", origin_offset)
 	
-	if(not init):
-		init = true
-		min_size = label_pixel_size
+
 		
 func get_aabb():
 	return label_pixel_size * self.pixel_size

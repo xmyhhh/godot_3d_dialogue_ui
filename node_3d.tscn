@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://ddmodmxojemun"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_7nj0j"]
-[ext_resource type="PackedScene" uid="uid://cyn8efrq8y60n" path="res://dialogBox/prefab/dialog_box_style1.tscn" id="2_vrmbq"]
+[ext_resource type="PackedScene" uid="uid://dod0ltpgttvgq" path="res://dialogBox/prefab/dialog_box_style2.tscn" id="3_4cva6"]
 [ext_resource type="Script" path="res://cam.gd" id="5_xjia1"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_do24p"]
@@ -25,7 +25,7 @@ albedo_color = Color(0.862745, 0.933333, 0.529412, 1)
 
 [node name="Node3D" type="Node3D" node_paths=PackedStringArray("dialog_box", "player_node")]
 script = ExtResource("1_7nj0j")
-dialog_box = NodePath("player2/dialog box")
+dialog_box = NodePath("player2/dialog box2")
 player_node = NodePath("player2")
 
 [node name="ground" type="MeshInstance3D" parent="."]
@@ -61,8 +61,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.59461)
 material_override = SubResource("StandardMaterial3D_h32qr")
 mesh = SubResource("CapsuleMesh_b38mj")
 
-[node name="dialog box" parent="player2" instance=ExtResource("2_vrmbq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="dialog box2" parent="player2" instance=ExtResource("3_4cva6")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)

@@ -17,7 +17,7 @@ shader_parameter/color_d = Color(0.466667, 0.0666667, 0.631373, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3vjm5"]
 gradient = SubResource("Gradient_dx55c")
 width = 141
-height = 74
+height = 84
 
 [node name="dialog box2" type="Node3D" node_paths=PackedStringArray("top_node", "center_node", "buttom_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08397, 0)
@@ -63,7 +63,7 @@ outline_size = 2
 autowrap_mode = 2
 
 [node name="buttom_bg" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31446, -0.447999, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.29601, 0.0391922, 0)
 visible = false
 gi_mode = 0
 billboard = 1
@@ -72,11 +72,9 @@ script = ExtResource("3_0mdtf")
 igone_shading = true
 
 [node name="buttom" type="Label3D" parent="buttom_bg"]
-visible = false
 billboard = 1
 render_priority = 2
 outline_render_priority = 2
-modulate = Color(0.427451, 0.0470588, 0.584314, 1)
-outline_modulate = Color(0.427451, 0.0470588, 0.584314, 1)
-text = "Yesa"
+outline_modulate = Color(1, 1, 1, 1)
+text = "…"
 outline_size = 4
